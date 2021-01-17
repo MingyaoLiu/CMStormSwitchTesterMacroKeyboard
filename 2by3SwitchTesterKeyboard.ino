@@ -21,17 +21,17 @@ uint8_t switch_down_count[6]; // switch continuous down state count.
 int led_pin = 16; // LED 5v pin
 unsigned long last_input_received = millis(); // last input recieved millsecond.
 unsigned long led_time_out_milsec = 600000; // 10 mins then led will turn off automatically
-int default_led_status = 1;
+int default_led_status = 1; // default led status (on by default).
 
 void setup() {
   
   pinMode(led_pin, OUTPUT);
   int led_stored_val = EEPROM.read(0); // read EEPROM 0 value. this address is used for LED on off setting.
-  if (led_stored_val != 0 && led_stored_val != 1) { // check if EEPROM has value, if not write default.
+  if (led_stored_val != 0 && led_stored_val != 1) { // check if EEPROM 0 doesn't have valid value, write default (on).
     EEPROM.write(0,default_led_status);
-    led_stored_val = default_led_status;
+  } else {
+    default_led_status = led_stored_val; // load EEPROM 0 value to default_led_status
   }
-  default_led_status = led_stored_val; // load EEPROM 0 value to default_led_status
   digitalWrite(led_pin, default_led_status);
   for(uint8_t i = 0; i < 6; i++) {  // Set all button pin state.
     pinMode(switch_pin[i], INPUT_PULLUP);
@@ -40,13 +40,9 @@ void setup() {
 }
 
 void loop() {
-    
     for(uint8_t i = 0; i < 6; i++) {
-      
-        // loop every pin current state and save to variable.
         switch_reading[i] = digitalRead(switch_pin[i]);
         press_these[i] = false;
-        
         if (switch_reading[i] == 0 && !switch_is_down[i]) { // Button is now pressed down, and it was up before, add to press list.
             switch_is_down[i] = true;
             press_these[i] = true;
@@ -61,7 +57,6 @@ void loop() {
             }
         }
     }
-    
     if (press_these[3] && press_these[5]) { // If button on top left and top right are pressed together, then toggle default LED lighting
       default_led_status = default_led_status ? 0 : 1;
       EEPROM.write(0,default_led_status);
@@ -72,7 +67,6 @@ void loop() {
               Keyboard.press(switch_key[i]);         
           }
       }
-      
       if ((millis() - last_input_received) >= led_time_out_milsec) { // if there hasn't been a key press in led_time_out_milsec.
         digitalWrite(led_pin, LOW);
       } else {
