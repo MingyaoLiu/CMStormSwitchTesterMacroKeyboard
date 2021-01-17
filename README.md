@@ -56,7 +56,7 @@ Arduino Pro Micro -------------- $7 CAD
 
 Key Switch x6 ------------------ $6 CAD
 
-Key cap x6 ------------------ $6 CAD
+Key cap x6 --------------------- $6 CAD
 
 CMStorm Switch Tester ---------- $20 CAD (comes with switch and translucent cap)
 
