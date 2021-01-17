@@ -68,5 +68,6 @@ This is one successful project. What I would improve next time:
 2. Run WS2812B led strip inside the case instead of led bulb. led bulb is too big, and individual address will require 6 more wire which is just clutter hell inside the case. In comparison, WS2812B can be individually addressed and only need 3 wires and a resistor. Based on my measurement, the 60 LED/m WS2812B strip should have the led exactly match the position of the switch, making it a no brainer. I don't have any 5V strip on hand that's why I couldn't do it. I have ordered some 5v 5M 5050SMD WS2812B 300LED strip for my next project. 30 bucks for 5m.
 3. better wiring. I would get maget wires, they are thin, easy to burn off part of the shell, and non conductive. But i didn't have any, I'm ordering some NOW.
 4. USB-C. I really want USB-C, but couldn't find any cheap board with it. The pro micro I got from amazing are chinese clones of sparkfun, 22 bucks for 3. (again canadian dollar). The sparkfun USB-C version of this is 30 CAD for 1.
-5. Just buy from aliexpress. new one with the same feature are around 30 CAD on aliexpress.
+5. QMK firmware. There should be something that can be done with QMK.
+6. Just buy from aliexpress. new one with the same feature are around 30 CAD on aliexpress.
 
