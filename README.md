@@ -2,7 +2,7 @@
 
 Convert a CMStorm (CoolerMaster) Key Switch Tester into a macro keyboard using an Arduino Pro Micro.
 
-![image](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/IMG_0318%5B2143%5D.jpg)
+![image](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/image.png)
 
 ![image1](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/IMG_0317.jpg)
 
