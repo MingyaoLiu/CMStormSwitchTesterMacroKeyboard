@@ -10,3 +10,5 @@ Arduino file contains detailed commenting, please read before use.
 led can be toggled with press top left and top right button at the same time.
 
 Schema comming soon after I learn to draw.
+
+![schema](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/Untitled%20Sketch_bb.png)
