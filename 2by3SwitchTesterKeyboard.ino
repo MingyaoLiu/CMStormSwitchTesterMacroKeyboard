@@ -1,29 +1,46 @@
 // 2 x 3 macro keyboard converted from CMStorm Switch tester.
-
+#include <EEPROM.h>
 #include "Keyboard.h"
 
+/**
+ * Pin Key map:
+ * 2 - bottom right key  - Right Arrow
+ * 3 - bottom center key - Down Arrow
+ * 4 - bottom left key   - Left Arrow
+ * 5 - top left key      - Page Up
+ * 6 - top center key    - Up Arrow
+ * 7 - top right key     - Page Down
+ * 16 - LED 5v output
+ */
 uint8_t switch_pin[6] = { 2, 3, 4, 5, 6, 7 }; // arduino pin of switch.
 char switch_key[6] = { (char)0xD7, (char) 0xD9, (char) 0xD8, (char) 0xD3, (char) 0xDA, (char)0xD6 }; // keyboard char of switch, map pin index.
 uint8_t switch_reading[6]; // reading of 1 is up, reading of 0 is down
 bool press_these[6];
 bool switch_is_down[6];
 uint8_t switch_down_count[6]; // switch continuous down state count.
+int led_pin = 16; // LED 5v pin
+unsigned long last_input_received = millis(); // last input recieved millsecond.
+unsigned long led_time_out_milsec = 600000; // 10 mins then led will turn off automatically
+int default_led_status = 1;
 
 void setup() {
   
-  // Set pin 16 to high for LED.
-  pinMode(16, OUTPUT);
-  digitalWrite(16, HIGH);
-  
-  // Set all button pin state.
-  for(uint8_t i = 0; i < 6; i++) {
+  pinMode(led_pin, OUTPUT);
+  int led_stored_val = EEPROM.read(0); // read EEPROM 0 value. this address is used for LED on off setting.
+  if (led_stored_val != 0 && led_stored_val != 1) { // check if EEPROM has value, if not write default.
+    EEPROM.write(0,default_led_status);
+    led_stored_val = default_led_status;
+  }
+  default_led_status = led_stored_val; // load EEPROM 0 value to default_led_status
+  digitalWrite(led_pin, default_led_status);
+  for(uint8_t i = 0; i < 6; i++) {  // Set all button pin state.
     pinMode(switch_pin[i], INPUT_PULLUP);
   }
   Keyboard.begin();
 }
 
 void loop() {
-
+    
     for(uint8_t i = 0; i < 6; i++) {
       
         // loop every pin current state and save to variable.
@@ -44,20 +61,30 @@ void loop() {
             }
         }
     }
-
-    // press each key that's in the press_these list.
-    for(uint8_t i = 0; i < 6; i++) {
-        if (press_these[i]) {
-            Keyboard.press(switch_key[i]);         
-        }
-    }
-    delay(30);
     
-    // release each key in the press_these list.
-    for(uint8_t i = 0; i < 6; i++) {
-        if (press_these[i]) {
-            Keyboard.release(switch_key[i]);           
-        }
+    if (press_these[3] && press_these[5]) { // If button on top left and top right are pressed together, then toggle default LED lighting
+      default_led_status = default_led_status ? 0 : 1;
+      EEPROM.write(0,default_led_status);
+    } else { 
+      for(uint8_t i = 0; i < 6; i++) { // press each key that's in the press_these list.
+          if (press_these[i]) {
+              last_input_received = millis(); // update last input received timer.
+              Keyboard.press(switch_key[i]);         
+          }
+      }
+      
+      if ((millis() - last_input_received) >= led_time_out_milsec) { // if there hasn't been a key press in led_time_out_milsec.
+        digitalWrite(led_pin, LOW);
+      } else {
+        digitalWrite(led_pin, default_led_status);
+      }
+      delay(30);
+      
+      for(uint8_t i = 0; i < 6; i++) { // release each key in the press_these list.
+          if (press_these[i]) {
+              Keyboard.release(switch_key[i]);           
+          }
+      }
+      delay(10);
     }
-    delay(10);
 }
