@@ -4,8 +4,6 @@ Convert a CMStorm (CoolerMaster) Key Switch Tester into a macro keyboard using a
 
 ![image](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/image.png)
 
-![image1](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/IMG_0317.jpg)
-
 ## Hardware
 
 My GMMK has a very awkward arrow key set up, and there is no way to change FN key map for me to use the bottom right 4 key for arrow key.
