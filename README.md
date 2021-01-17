@@ -13,5 +13,5 @@ Schema comming soon after I learn to draw.
 
 ![schema](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/Untitled%20Sketch_bb.png)
 
-![schema2](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/Untitled%20%Sketch_schem.png)
+![schema2](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/Untitled%20Sketch_schem.png)
 
