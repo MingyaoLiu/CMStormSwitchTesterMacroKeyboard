@@ -1,11 +1,10 @@
 # CMStormSwitchTesterMacroKeyboard
 
+Convert a CMStorm (CoolerMaster) Key Switch Tester into a macro keyboard using an Arduino Pro Micro.
 
 ![image](https://github.com/MingyaoLiu/CMStormSwitchTesterMacroKeyboard/blob/main/IMG_0317.jpg)
 
 ## Hardware
-
-Convert a CMStorm (CoolerMaster) Key Switch Tester into a macro keyboard using an Arduino Pro Micro.
 
 My GMMK has a very awkward arrow key set up, and there is no way to change FN key map for me to use the bottom right 4 key for arrow key.
 
@@ -53,9 +52,13 @@ Schema draw on fritzing, button is the switch.
 ## BOM
 
 Arduino Pro Micro -------------- $7 CAD
+
 Key Switch x6 ------------------ $6 CAD (price should include in the CMStorm Switch Tester, but that comes with 6 different switch)
+
 Key cap x6 ------------------ $6 CAD (price should include in the CMStorm Switch Tester, all transparent cap)
+
 CMStorm Switch Tester ---------- $20 CAD
+
 Total -------------------------- $27 CAD + ($12 CAD - cap&switch)
 
 ## After thought
